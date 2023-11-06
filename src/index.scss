@@ -16,8 +16,8 @@ html {
   padding: 0 20px;
 }
 
-body{
-  ::-webkit-scrollbar{
+body {
+  ::-webkit-scrollbar {
     display: none;
   }
 }
@@ -31,27 +31,66 @@ body{
   }
 }
 
-.client_checking{
+.client_checking {
   height: 500px;
   overflow-y: scroll !important;
-  &::-webkit-scrollbar{
+  &::-webkit-scrollbar {
     display: none !important;
   }
-  &::-webkit-scrollbar-track{
-    background-color: transparent!important;
+  &::-webkit-scrollbar-track {
+    background-color: transparent !important;
   }
-  &::-webkit-scrollbar-thumb{
-    background-color: transparent!important;
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent !important;
   }
-  p{
+  p {
     text-align: start;
     font-style: italic;
-    span{
+    span {
       color: #1bf899;
       font-style: normal;
       font-weight: bold;
     }
   }
+}
+.client_checking{
+max-height: 400px !important;
 
 }
+.modal-overlay {
+  padding: 30px !important;
+}
+.client_checking * {
+  h2 {
+    margin-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+  color: black !important;
+  span {
+    color: red !important;
+  }
+}
 
+.user-modal {
+  text-align: left !important;
+  margin-top: 10px;
+  margin-left: 15px;
+  li {
+    list-style-type: disc !important;
+    text-align: left !important;
+    font-size: 18px;
+    font-weight: 600;
+  }
+}
+
+.modal-actions {
+  button {
+    background-color: #fff;
+    border: none;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    &:hover {
+      box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.9);
+      transform: scale(1.1);
+    }
+  }
+}

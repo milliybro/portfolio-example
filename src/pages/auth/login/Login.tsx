@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useAuth } from "../../../states/auth";
 import { useNavigate } from "react-router-dom";
 
-import gif from "../../../assets/login.gif";
 import hide from "../../../assets/hide.png";
 import show from "../../../assets/show.png";
 import "./login.scss";
@@ -46,20 +45,10 @@ const Login = () => {
     <main className="main">
       <section className="section-login">
         <div className="section-main">
-          <div className="section-login-1">
-            <div className="section-login-1-main">
-              <h1 className="section-login-1-title">Build Your Resume</h1>
-              <p className="section-login-1-text">
-                Login now and build your awesome resume
-              </p>
-              <div className="section-login-1-img">
-                <img src={gif} alt="" />
-              </div>
-            </div>
-          </div>
+          
           <div className="section-login-2">
             <div className="section-login-2-main">
-              <h1 className="section-login-2-title">Login </h1>
+              <h1 className="section-login-2-title">Sign In </h1>
               <form className="section-login-2-form" onSubmit={handleLogin}>
                 <div className="login-form-1">
                   <label htmlFor="input-username">Username</label>
@@ -97,18 +86,16 @@ const Login = () => {
                   </div>
                 </div>
                 <div className="login-form-4">
-                  <input type="checkbox" id="input-checkbox" />
                   <p>
-                    By creating an account, you agree to the{" "}
-                    <a href="#">Terms & Conditions.</a>
+                    Forgot password?
                   </p>
                 </div>
                 <div className="login-form-submit-btn">
-                  <button type="submit">Login In</button>
+                  <button type="submit">Next</button>
                 </div>
                 <div className="login-form-5">
                   <p>
-                    If you don't have account? <a href="/register">Register</a>
+                  No account? <a href="/register">Create one</a>
                   </p>
                 </div>
               </form>

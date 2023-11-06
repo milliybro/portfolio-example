@@ -6,6 +6,7 @@
 
 .experience_main {
   display: flex;
+  justify-content: space-between;
   padding: 0 10px;
   gap: 25px;
   margin-bottom: 250px;
@@ -13,8 +14,10 @@
     flex-direction: column;
   }
   .form__container {
-    background: #434040;
-    width: calc(24px + 16 * ((100vw - 320px) / 35));
+    margin-top: 20px;
+    background: #fff;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+    width: calc(24px + 16 * ((100vw - 600px) / 35));
     padding: 10px;
     border-radius: 10px;
     @include media(1190px){
@@ -25,21 +28,16 @@
         font-family: 'Poppins, sans-serif';
     }
     .exp_form_title {
-      color: #ebedeb;
+      color: #000;
       font-family: "Poppins", sans-serif;
       display: flex;
+      text-align: center !important;
       align-items: center;
       gap: 15px;
       @include media(500px){
         font-size: 20px;
       }
-      img {
-        width: 45px;
-        filter: invert(1);
-      }
-      span {
-        color: #14ff0c;
-      }
+   
     }
     .experience__from {
       .form__group {
@@ -50,7 +48,7 @@
         label {
           font-family: "Poppins", sans-serif;
           font-size: 20px;
-          color: #fff;
+          color: #000;
         }
         input,
         textarea {
@@ -59,24 +57,24 @@
           border: none;
           border-bottom: 2px solid #fff;
           outline: none;
-          background: #434040;
-          color: #fff;
+          background: #edecec;
+          color: #000;
           &:focus {
-            border-bottom: 2px solid #14ff0c;
+            border-bottom: 2px solid #000;
           }
           &::placeholder {
-            color: #fff;
+            color: #000;
             font-family: "Poppins", sans-serif;
           }
         }
         .textarea {
           width: 100%;
-          height: 150px;
+          height: 100px;
           resize: none;
         }
         .submit_exp_btn {
+          margin-top: 50px;
           cursor: pointer;
-          --green: #1bfd9c;
           font-size: 15px;
           padding: 0.7em 2.7em;
           letter-spacing: 0.06em;
@@ -86,22 +84,9 @@
           overflow: hidden;
           transition: all 0.3s;
           line-height: 1.4em;
-          border: 2px solid var(--green);
-          background: linear-gradient(
-            to right,
-            rgba(27, 253, 156, 0.1) 1%,
-            transparent 40%,
-            transparent 60%,
-            rgba(27, 253, 156, 0.1) 100%
-          );
-          color: var(--green);
-          box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4),
-            0 0 9px 3px rgba(27, 253, 156, 0.1);
-          &:hover {
-            color: #82ffc9;
-            box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.6),
-              0 0 9px 3px rgba(27, 253, 156, 0.2);
-          }
+          background: #ffc700;
+          color: #000;
+          
           &::before {
             content: "";
             position: absolute;
@@ -126,12 +111,15 @@
     }
   }
   .experience__list {
+  margin-top: 20px;
     position: relative;
     height: 645px;
-    background: #434040;
+    background: #fff;
     border-radius: 10px;
-    width: 50%;
+    width: 70%;
     overflow-y: scroll;
+      box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+
     &::-webkit-scrollbar{
       display: none;
     }
@@ -152,8 +140,7 @@
       z-index: 5;
       border-radius: 10px;
       text-align: center;
-      background: rgba(255, 255, 255, 0.27);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      background: #ffc700;
       backdrop-filter: blur(5.7px);
       -webkit-backdrop-filter: blur(5.7px);
       border: 1px solid rgba(255, 255, 255, 0.12);
@@ -161,14 +148,15 @@
       h1 {
         padding: 8px 0;
         font-family: "Poppins", sans-serif;
-        color: #fff;
+        color: #000;
       }
     }
     .overly {
       position: absolute;
       width: 100%;
       height: 100%;
-      background: #3b3b3b94;
+      box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+  background-color: #000;
       top: 0;
       border-radius: 10px;
     }

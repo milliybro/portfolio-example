@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-import register from "../../../assets/registerflow_v1r1.gif";
 import hide from "../../../assets/hide.png";
 import show from "../../../assets/show.png";
 import { useAuth } from "../../../states/auth";
@@ -50,22 +49,10 @@ const Register = () => {
     <main className="main">
       <section className="section-login">
         <div className="section-main">
-          <div className="section-login-1 for_register">
-            <div className="section-login-1-main">
-              <h1 className="section-login-1-title register_title">
-                Registeration
-              </h1>
-              <p className="section-login-1-text register_info">
-                Create your account and build awesome <span>Portfolio!</span>
-              </p>
-              <div className="section-login-1-img ">
-                <img src={register} alt="" />
-              </div>
-            </div>
-          </div>
+          
           <div className="section-login-2">
             <div className="section-login-2-main">
-              <h1 className="section-login-2-title">Register </h1>
+              <h1 className="section-login-2-title">Sign Up </h1>
               <form className="section-login-2-form" onSubmit={handleLogin}>
                 <div className="login-form-1">
                   <label htmlFor="input-firstname">First Name</label>
@@ -73,7 +60,7 @@ const Register = () => {
                     type="text"
                     name="firstName"
                     id="firstName"
-                    placeholder="Username"
+                    placeholder="First Name"
                     required
                     onChange={handeChange}
                   />
@@ -84,7 +71,7 @@ const Register = () => {
                     type="text"
                     name="lastName"
                     id="lastName"
-                    placeholder="Username"
+                    placeholder="Last Name"
                     required
                     onChange={handeChange}
                   />
@@ -124,19 +111,41 @@ const Register = () => {
                     </button>
                   </div>
                 </div>
-                <div className="login-form-4">
-                  <input type="checkbox" id="input-checkbox" />
-                  <p>
-                    By creating an account, you agree to the{" "}
-                    <a href="#">Terms & Conditions.</a>
-                  </p>
+                <div className="login-form-3">
+                  <label htmlFor="input-password">Confirm Password</label>
+                  <div className="password-input-container">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      name="password"
+                      id="password"
+                      placeholder="Confirm Password"
+                      required
+                      onChange={handeChange}
+                    />
+                    <button
+                      type="button"
+                      className="password-toggle-button"
+                      onClick={handlePasswordToggle}
+                    >
+                      {showPassword ? (
+                        <img src={hide} alt="" />
+                      ) : (
+                        <img src={show} alt="" />
+                      )}
+                    </button>
+                  </div>
                 </div>
                 <div className="login-form-submit-btn">
                   <button type="submit">Register</button>
                 </div>
                 <div className="login-form-5">
                   <p>
-                    Already have an account? <a href="/login">Log In</a>
+                    Already have an account? <a href="/login">Sign In</a>
+                  </p>
+                </div>
+                <div className="login-click">
+                  <p>
+                  Click “Sign Up” to agree to Medium’s <a href="#">Terms of Service</a> and acknowledge that Medium’s <a href="#">Privacy Policy</a> applies to you.
                   </p>
                 </div>
               </form>

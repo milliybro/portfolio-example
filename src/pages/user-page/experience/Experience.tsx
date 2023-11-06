@@ -5,10 +5,6 @@ import { toast } from "react-toastify";
 import { AccordionSectionProps } from "../../../types";
 import ConfirmationModal from "../../../components/confirmation/ConfirmationModal";
 
-import exp_icon from "../../../assets/experience.svg";
-import edit_icon from "../../../assets/edit.png";
-import delete_icon from "../../../assets/delete.png";
-
 import "../../../components/accordion/accordion.scss";
 import "./experience.scss";
 import DataLoading from "../../../components/dataLoading/Loading";
@@ -37,7 +33,7 @@ const Experience = () => {
 
       setExperience(data.data);
     } catch (err) {
-      toast.error("Error getting experience!");
+      console.log(err);
     } finally {
       setLoading(false);
     }
@@ -64,10 +60,10 @@ const Experience = () => {
           startDate: "",
           endDate: "",
         });
-        toast.success("Experiences Edited successfully");
+        toast.success("Edited successfully");
       } else {
         await request.post("experiences", experienceData);
-        toast.success("Data added successfully");
+        toast.success("Data added");
         setExperienceData({
           workName: "",
           companyName: "",
@@ -101,7 +97,7 @@ const Experience = () => {
         endDate: formattedEndDate,
       });
     } catch (err) {
-      toast.error("Error updating");
+      console.log(err);
     } finally {
       toast.success("Success update completed");
     }
@@ -137,12 +133,82 @@ const Experience = () => {
 
   return (
     <div className="experience_main">
+      <div className="experience__list">
+        <div className="exp_title">
+          <h1 className="title">Experience</h1>
+        </div>
+        <div className={`${loading ? '' :'exp_list'}`} style={loading? {marginTop: '200px'}: {margin: '0'}}>
+          {loading ? (
+            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '20px'}}>
+              <DataLoading />
+            </div>
+          ) : (
+            experience?.map((res) => (
+              <details className="accordion" key={res._id}>
+                <summary className="accordion-header">
+                  <div className="accordion-header-content">
+                    <div className="exp_info">
+                      <span className="accordion-header-content-label">
+                        <span className="contents_name">Company:</span>
+                        {res.companyName}
+                      </span>
+                      <span className="accordion-header-content-label">
+                        <span className="contents_name">Start Date:</span>
+                        {res.startDate.split("T")[0]}
+                      </span>
+                      
+                    </div>
+                    <div className="exp_info">
+                    <span className="accordion-header-content-label">
+                        <span className="contents_name">Position:</span>
+                        {res.workName}
+                      </span>
+                      <span className="accordion-header-content-title">
+                        <span className="contents_name">End Date:</span>{" "}
+                        {res.endDate.split("T")[0]}
+                      </span>
+                    </div>
+                    <div className="exp_infos btn">
+                      <button
+                        onClick={() => handleUpdate(res._id)}
+                        className=""
+                      >
+                        <h4>Edit</h4>
+                      </button>
+                      <button onClick={() => deleteExperience(res._id)}>
+                        <h4>Delete</h4>
+                      </button>
+                    </div>
+                  </div>
+                </summary>
+                <div className="accordion-content">
+                  <p className="accordion-content-text">
+                    <span className="contents_name">Your Description:</span>
+                    {res.description}
+                  </p>
+                </div>
+              </details>
+            ))
+          )}
+        </div>
+      </div>
       <div className="form__container">
         <h1 className="exp_form_title">
-          <img src={exp_icon} alt="" />
-          Add Your <span>Experience</span>
+          Add <span>Experience</span>
         </h1>
         <form className="experience__from" onSubmit={handleSubmit}>
+        <div className="form__group">
+            <label htmlFor="companyName">Company</label>
+            <input
+              type="text"
+              name="companyName"
+              id="companyName"
+              value={companyName}
+              onChange={onChange}
+              placeholder="Company name"
+              required
+            />
+          </div>
           <div className="form__group">
             <label htmlFor="workName">Your Position</label>
             <input
@@ -155,18 +221,7 @@ const Experience = () => {
               required
             />
           </div>
-          <div className="form__group">
-            <label htmlFor="companyName">Company</label>
-            <input
-              type="text"
-              name="companyName"
-              id="companyName"
-              value={companyName}
-              onChange={onChange}
-              placeholder="Company name"
-              required
-            />
-          </div>
+          
           <div className="form__group">
             <label htmlFor="description">Description</label>
             <input
@@ -208,65 +263,7 @@ const Experience = () => {
           </div>
         </form>
       </div>
-      <div className="experience__list">
-        <div className="exp_title">
-          <h1 className="title">Experience Lists</h1>
-        </div>
-        <div className="overl"></div>
-        <div className={`${loading ? '' :'exp_list'}`} style={loading? {marginTop: '200px'}: {margin: '0'}}>
-          {loading ? (
-            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '20px'}}>
-              <DataLoading />
-            </div>
-          ) : (
-            experience?.map((res) => (
-              <details className="accordion" key={res._id}>
-                <summary className="accordion-header">
-                  <div className="accordion-header-content">
-                    <div className="exp_info">
-                      <span className="accordion-header-content-label">
-                        <span className="contents_name">Company:</span>
-                        {res.companyName}
-                      </span>
-                      <h2 className="accordion-header-content-title">
-                        <span className="contents_name">Position:</span>
-                        {res.workName}
-                      </h2>
-                    </div>
-                    <div className="exp_info">
-                      <span className="accordion-header-content-label">
-                        <span className="contents_name">Start Date:</span>
-                        {res.startDate.split("T")[0]}
-                      </span>
-                      <span className="accordion-header-content-title">
-                        <span className="contents_name">End Date:</span>{" "}
-                        {res.endDate.split("T")[0]}
-                      </span>
-                    </div>
-                    <div className="exp_info btn">
-                      <button
-                        onClick={() => handleUpdate(res._id)}
-                        className=""
-                      >
-                        <img src={edit_icon} alt="" />
-                      </button>
-                      <button onClick={() => deleteExperience(res._id)}>
-                        <img src={delete_icon} alt="" />
-                      </button>
-                    </div>
-                  </div>
-                </summary>
-                <div className="accordion-content">
-                  <p className="accordion-content-text">
-                    <span className="contents_name">Your Description:</span>
-                    {res.description}
-                  </p>
-                </div>
-              </details>
-            ))
-          )}
-        </div>
-      </div>
+      
       <ConfirmationModal
         deleteTitle="Confirmation Deletation"
         deleteMessage="Are you sure you want to delete this experience data?"

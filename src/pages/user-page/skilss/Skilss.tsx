@@ -6,8 +6,7 @@ import { toast } from "react-toastify";
 import ConfirmationModal from "../../../components/confirmation/ConfirmationModal";
 
 import skill_icon from "../../../assets/skilss.svg";
-import edit from "../../../assets/edit.png";
-import delete_icon from "../../../assets/delete.png";
+
 
 import "./skilss.scss";
 import DataLoading from "../../../components/dataLoading/Loading";
@@ -134,6 +133,81 @@ const Skilss = () => {
 
   return (
     <div className="skill_wrapper">
+      <div className="skill_list">
+        <div className="list__title">
+          <h1>
+            <span>Skills</span> 
+          </h1>
+        </div>
+        <div className="list_col">
+          {loading ? (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "300px",
+              }}
+            >
+              <DataLoading /> 
+            </div>
+          ) : (
+            skill.map((res) => (
+              <div className="container_list" key={res._id}>
+                <div className="bar " data-skill="HTML">
+                  <div
+                    className="learning"
+                    style={{ width: `${res.percent}%` }}
+                  >
+                  </div>
+                </div>
+                <div className="skill_list_info">
+                  <div className="info_percent">
+                    <span>Skill Name:</span>
+                    {res.name}
+                  </div>
+                  <div className="info_percent">
+                    <span>Percent:</span>
+                    {res.percent}%
+                  </div>
+                  <div className="skill_action_btns">
+                    <button
+                      className="edit_btn"
+                      onClick={() => editSkill(res._id)}
+                    >
+                      <h4>Edit</h4>
+                    </button>
+                    <button
+                      className="delete_btn"
+                      onClick={() => deleteSkill(res._id)}
+                    >
+                      <h4>Delete</h4>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+        {skill.length < 10 ? (
+          ""
+        ) : (
+          <div className="pagination">
+            <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+              Prev
+            </button>
+            <span>
+              Page {currentPage} of {totalPages}
+            </span>
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
+          </div>
+        )}
+      </div>
       <div
         className={
           shaking ? `skill__form__wrapper` : `skill__form__wrapper shaking`
@@ -141,7 +215,7 @@ const Skilss = () => {
       >
         <h1>
           <img src={skill_icon} alt="" />{" "}
-          {selected ? "Edit Your Skill" : "Create Skill"} <span>Skill</span>
+          {selected ? "Edit Skill" : "Add Skill"} <span>Skill</span>
         </h1>
         <form className="skill_form" onSubmit={handleSubmit}>
           <div className="skill_form_group">
@@ -181,79 +255,7 @@ const Skilss = () => {
           </button>
         </form>
       </div>
-      <div className="skill_list">
-        <div className="list__title">
-          <h1>
-            <span>Skills</span> Lists
-          </h1>
-        </div>
-        <div className="list_col">
-          {loading ? (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "300px",
-              }}
-            >
-              <DataLoading /> 
-            </div>
-          ) : (
-            skill.map((res, index) => (
-              <div className="container_list" key={res._id}>
-                <div className="bar " data-skill="HTML">
-                  <div
-                    className="learning"
-                    style={{ width: `${res.percent}%` }}
-                  >
-                    {res.name}
-                  </div>
-                </div>
-                <div className="skill_list_info">
-                  <div className="info_percent">
-                    <span>Percent:</span>
-                    {res.percent}%
-                  </div>
-                  <div className="skill_action_btns">
-                    <button
-                      className="edit_btn"
-                      onClick={() => editSkill(res._id)}
-                    >
-                      <img src={edit} alt="" />
-                    </button>
-                    <button
-                      className="delete_btn"
-                      onClick={() => deleteSkill(res._id)}
-                    >
-                      <img src={delete_icon} alt="" />
-                    </button>
-                  </div>
-                </div>
-                <div className="order">{index + 1}</div>
-              </div>
-            ))
-          )}
-        </div>
-        {skill.length === 0 ? (
-          ""
-        ) : (
-          <div className="pagination">
-            <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-              Prev
-            </button>
-            <span>
-              Page {currentPage} of {totalPages}
-            </span>
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-            >
-              Next
-            </button>
-          </div>
-        )}
-      </div>
+      
       <ConfirmationModal
         deleteTitle="Confirmation Deletation"
         deleteMessage="Are you sure you want to delete this skill data?"

@@ -83,7 +83,7 @@ const Sidebar = () => {
             <h1>MPortfolio</h1>
           </div>
           <p className="user_id">
-            User: <span>{userData.firstName}</span>
+            User: <span>{userData.firstName} {userData.lastName}</span>
           </p>
         </div>
         <ul className="sidebar_links">
@@ -99,14 +99,14 @@ const Sidebar = () => {
           ))}
         </ul>
         <ul className="sidebar_links">
-          <span className="devide_part">Preference</span>
-          <li
+          {/* <span className="devide_part">Preference</span> */}
+          {/* <li
             className={location.pathname === "/settings" ? "active" : ""}
             onClick={() => navigate("/settings")}
           >
             <img src={icon6} alt="" />
             <Link to={"/setting"}>Settings</Link>
-          </li>
+          </li> */}
           <li>
             <img src={icon7} alt="" />
             <div className="logOut" onClick={handleLogout}>Logout</div>

@@ -9,10 +9,6 @@ import { IMG_URL } from "../../constants";
 import bell from "../../../public/bell.png";
 import avatar from "../../assets/avatar-svgrepo-com.svg";
 import search from "../../assets/search-icon.png";
-import user_img from "../../assets/userdropdown/user.svg";
-import setting from "../../assets/userdropdown/setting.svg";
-import faq from "../../assets/userdropdown/faq.svg";
-import logoutt from "../../assets/userdropdown/logout.svg";
 
 import "./Header.scss";
 
@@ -85,53 +81,34 @@ const UserHeader = () => {
           <span className="bell">{unansweredMessages}</span>
         </div>
         <div className="account">
-          <div onClick={controlDropdown}>
+          <div className="accountim" onClick={controlDropdown}>
             <img className="account__img" src={userData.photo ? IMG_URL + userData.photo : avatar} alt="icon" />
+            <h4>{userData.firstName}</h4>
           </div>
           <div
             className={openDropdown ? "user_dropdown open" : "user_dropdown"}
           >
-            <div className="user_img">
-              <img
-                src={userData.photo ? IMG_URL + userData.photo : avatar}
-                alt="icon"
-              />
-              <div className="user_name">
-                <span className="name">{userData.firstName}</span>
-                <span>{userData.lastName}</span>
-              </div>
-            </div>
-            <div className="line"></div>
             <ul>
               <li>
                 <Link to={"/about"}>
-                  <img src={user_img} alt="" />
                     View Profile
                 </Link>
               </li>
               <li>
                 <Link to={"/account"}>
-                  <img src={user_img} alt="" />
                   Account
                 </Link>
               </li>
               <li>
                 <Link to={"/settings"}>
-                  <img src={setting} alt="" />
                   Settings
                 </Link>
               </li>
-              <li>
-                <Link to={""}>
-                  <img src={faq} alt="" />
-                  FAQ
-                </Link>
-              </li>
+
             </ul>
             <div className="line"></div>
             <div className="logout">
               <button onClick={handleLogout}>
-                <img src={logoutt} alt="" />
                 Logout
               </button>
             </div>
