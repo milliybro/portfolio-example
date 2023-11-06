@@ -6,6 +6,7 @@
 .education {
   .education_main {
     display: flex;
+    justify-content: space-between;
     padding: 0 10px;
     gap: 25px;
     margin-bottom: 100px;
@@ -13,8 +14,10 @@
       flex-direction: column;
     }
     .form__container {
-      background: #434040;
-      width: calc(24px + 16 * ((100vw - 320px) / 35));
+      background: #fff;
+      margin-top: 20px;
+      box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+      width: 35%;
       padding: 10px;
       border-radius: 10px;
       @include media(1180px) {
@@ -25,7 +28,7 @@
         font-family: "Poppins, sans-serif";
       }
       .edu_form_title {
-        color: #ebedeb;
+        color: #000;
         font-family: "Poppins", sans-serif;
         display: flex;
         align-items: center;
@@ -37,9 +40,7 @@
           width: 45px;
           filter: invert(1);
         }
-        span {
-          color: #14ff0c;
-        }
+
       }
       .education__from {
         .form__group {
@@ -50,7 +51,7 @@
           label {
             font-family: "Poppins", sans-serif;
             font-size: 20px;
-            color: #fff;
+            color: #000;
           }
           input,
           textarea {
@@ -59,13 +60,10 @@
             border: none;
             border-bottom: 2px solid #fff;
             outline: none;
-            background: #434040;
-            color: #fff;
-            &:focus {
-              border-bottom: 2px solid #14ff0c;
-            }
+            background: #eee;
+            color: #000;
             &::placeholder {
-              color: #fff;
+              color: #000;
               font-family: "Poppins", sans-serif;
             }
           }
@@ -76,7 +74,6 @@
           }
           .submit_exp_btn {
             cursor: pointer;
-            --green: #1bfd9c;
             font-size: 15px;
             padding: 0.7em 2.7em;
             letter-spacing: 0.06em;
@@ -86,78 +83,20 @@
             overflow: hidden;
             transition: all 0.3s;
             line-height: 1.4em;
-            border: 2px solid var(--green);
-            background: linear-gradient(
-              to right,
-              rgba(27, 253, 156, 0.1) 1%,
-              transparent 40%,
-              transparent 60%,
-              rgba(27, 253, 156, 0.1) 100%
-            );
-            color: var(--green);
-            box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4),
-              0 0 9px 3px rgba(27, 253, 156, 0.1);
-            &:hover {
-              color: #82ffc9;
-              box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.6),
-                0 0 9px 3px rgba(27, 253, 156, 0.2);
-            }
-            &::before {
-              content: "";
-              position: absolute;
-              left: -4em;
-              width: 4em;
-              height: 100%;
-              top: 0;
-              transition: transform 0.4s ease-in-out;
-              background: linear-gradient(
-                to right,
-                transparent 1%,
-                rgba(27, 253, 156, 0.1) 40%,
-                rgba(27, 253, 156, 0.1) 60%,
-                transparent 100%
-              );
-            }
-            &:hover::before {
-              transform: translateX(45em);
-            }
+            border: 2px solid #ffc700;
+            color: #ffc700;
+            background-color: transparent;
           }
         }
       }
     }
-    .edu_confirm_img {
-      width: 50%;
-      background-color: #4158d0;
-      background-image: linear-gradient(
-        43deg,
-        #4158d0 0%,
-        #c850c0 46%,
-        #ffcc70 100%
-      );
-      border-radius: 15px;
-      @include media(1180px) {
-        width: 100%
-      }
-      img {
-        width: 100%;
-      }
-    }
+
   }
   .edu_cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    margin-top: 20px;
     gap: 5px;
     margin-bottom: 180px;
     position: relative;
-    @include media(1300px){
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
-    @include media(1100px){
-      grid-template-columns: repeat(1, 1fr);
-      gap: 15px;
-      place-items: center;
-    }
   }
   .desc {
     height: 50px;
@@ -179,12 +118,12 @@
       align-items: center;
       gap: 15px;
       span {
-        color: #fff;
+        color: #000;
         font-family: "Poppins", sans-serif;
       }
       button {
         cursor: pointer;
-        --green: #1bfd9c;
+        --green: #ffc700;
         font-size: 15px;
         letter-spacing: 0.06em;
         padding: 10px;
@@ -195,40 +134,9 @@
         transition: all 0.3s;
         line-height: 1.4em;
         border: 2px solid var(--green);
-        background: linear-gradient(
-          to right,
-          rgba(27, 253, 156, 0.1) 1%,
-          transparent 40%,
-          transparent 60%,
-          rgba(27, 253, 156, 0.1) 100%
-        );
+        background: transparent;
         color: var(--green);
-        box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4),
-          0 0 9px 3px rgba(27, 253, 156, 0.1);
-        &:hover {
-          color: #82ffc9;
-          box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.6),
-            0 0 9px 3px rgba(27, 253, 156, 0.2);
-        }
-        &::before {
-          content: "";
-          position: absolute;
-          left: -4em;
-          width: 4em;
-          height: 100%;
-          top: 0;
-          transition: transform 0.4s ease-in-out;
-          background: linear-gradient(
-            to right,
-            transparent 1%,
-            rgba(27, 253, 156, 0.1) 40%,
-            rgba(27, 253, 156, 0.1) 60%,
-            transparent 100%
-          );
-        }
-        &:hover::before {
-          transform: translateX(45em);
-        }
+
       }
     }
   }

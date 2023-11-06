@@ -172,83 +172,8 @@ const Education = () => {
   return (
     <section className="education">
       <div className="education_main">
-        <div className="form__container">
-          <h1 className="edu_form_title">
-            <img src={eduIcon} alt="" />
-            {selected ? "Edit" : "Add"} Your <span>Education</span>
-          </h1>
-          <form className="education__from" onSubmit={handleSubmit}>
-            <div className="form__group">
-              <label htmlFor="name">Education Name</label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                value={name}
-                placeholder="Education Name"
-                onChange={onChange}
-              />
-            </div>
-            <div className="form__group">
-              <label htmlFor="startDate">Start Date</label>
-              <input
-                type="date"
-                name="startDate"
-                placeholder="01/12/2001"
-                value={startDate}
-                onChange={onChange}
-              />
-            </div>
-            <div className="form__group">
-              <label htmlFor="endDate">End Date</label>
-              <input
-                type="date"
-                name="endDate"
-                value={endDate}
-                placeholder="01/12/2001"
-                onChange={onChange}
-              />
-            </div>
-            <div className="form__group">
-              <label htmlFor="level">Education Level</label>
-              <input
-                type="text"
-                name="level"
-                id="level"
-                placeholder="Education Level"
-                list="levelOptions"
-                value={selectedLevel}
-                onChange={handleLevelChange}
-              />
-            </div>
-            <div className="form__group">
-              <label htmlFor="description">Description</label>
-              <input
-                className="desc"
-                name="description"
-                id="description"
-                placeholder="Text here ..."
-                value={description}
-                onChange={onChange}
-              ></input>
-            </div>
-            <datalist id="levelOptions">
-              {educationLevels.map((level, index) => (
-                <option key={index} value={level} />
-              ))}
-            </datalist>
-            <div className="form__group">
-              <button className="submit_exp_btn add_edu" type="submit">
-                {selected ? "Save Changes" : "Add Education"}
-              </button>
-            </div>
-          </form>
-        </div>
-        <div className="edu_confirm_img">
-          <img src={selected ? tick : adding} alt="" />
-        </div>
-      </div>
-      <div className={`${loading ? "" : "edu_cards"}`}>
+        
+        <div className={`${loading ? "" : "edu_cards"}`}>
         {loading ? (
           <div className="edu_loading" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <DataLoading />
@@ -270,7 +195,7 @@ const Education = () => {
         )}
 
         <div className="pagination_container">
-          {euducationData.length === 0 ? (
+          {euducationData.length < 10 ? (
             ""
           ) : (
             <div className="pagination">
@@ -290,6 +215,81 @@ const Education = () => {
           )}
         </div>
       </div>
+      <div className="form__container">
+          <h1 className="edu_form_title">
+            <img src={eduIcon} alt="" />
+            {selected ? "Edit" : "Add"} <span>Education</span>
+          </h1>
+          <form className="education__from" onSubmit={handleSubmit}>
+            <div className="form__group">
+              <label htmlFor="name">Education Name</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                value={name}
+                placeholder="Education Name"
+                onChange={onChange}
+              />
+            </div>
+            
+            <div className="form__group">
+              <label htmlFor="level">Education Level</label>
+              <input
+                type="text"
+                name="level"
+                id="level"
+                placeholder="Education Level"
+                list="levelOptions"
+                value={selectedLevel}
+                onChange={handleLevelChange}
+              />
+            </div>
+            <div className="form__group">
+              <label htmlFor="description">Description</label>
+              <input
+                className="desc"
+                name="description"
+                id="description"
+                placeholder="Text..."
+                value={description}
+                onChange={onChange}
+              ></input>
+            </div>
+            <div className="form__group">
+              <label htmlFor="startDate">Start Date</label>
+              <input
+                type="date"
+                name="startDate"
+                placeholder="01/12/2001"
+                value={startDate}
+                onChange={onChange}
+              />
+            </div>
+            <div className="form__group">
+              <label htmlFor="endDate">End Date</label>
+              <input
+                type="date"
+                name="endDate"
+                value={endDate}
+                placeholder="01/12/2001"
+                onChange={onChange}
+              />
+            </div>
+            <datalist id="levelOptions">
+              {educationLevels.map((level, index) => (
+                <option key={index} value={level} />
+              ))}
+            </datalist>
+            <div className="form__group">
+              <button className="submit_exp_btn add_edu" type="submit">
+                {selected ? "Save Changes" : "Add Education"}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
       <ConfirmationModal
         deleteTitle="Confirmation Deletation"
         deleteMessage="Are you sure you want to delete this education data?"
