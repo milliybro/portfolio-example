@@ -5,17 +5,15 @@
   }
 }
 .sidebar {
-  width: 250px;
+  width: 140px;
   height: 100vh;
   background-color: #0F0C22;
   color: #999;
-  margin-top: 19px;
   padding: 20px;
   backdrop-filter: blur(10px);
-  border-radius: 20px;
-  margin-left: 10px;
   transition: transform 0.3s ease;
   overflow-y: scroll;
+  position: relative;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -39,7 +37,8 @@
         }
       }
       img {
-        width: 40px;
+        width: 100px;
+        height: 100px;
         border-radius: 50%;
       }
     }
@@ -53,13 +52,16 @@
     transform: translateX(0); /* Slide in when open */
   }
   .sidebar_links {
+    display: flex;
     margin-top: 25px;
     li {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
       transition: 0.1s ease-out;
       img {
+        width: 30px;
         filter: invert(1);
         @include media(500px) {
           width: 35px;
@@ -69,7 +71,7 @@
       .logOut {
         margin-top: 8px;
         font-family: "Plus Jakarta Sans", sans-serif;
-        font-size: 20px;
+        font-size: 16px;
         line-height: 21px;
         color: #999;
         padding-bottom: 10px;

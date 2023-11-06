@@ -16,33 +16,55 @@ import Portfolio from "./pages/default-page/portfolio/Portfolio";
 import Contact from "./pages/default-page/contact/Contact";
 import NotFound from "./pages/user-page/NotFound";
 import { useAuth } from "./states/auth";
+import AdminLayout from "./layouts/AdminLayout/AdminLayout";
+import DashboardPage from "./pages/admin-page/dashboard/DashboardPage";
 
 function App() {
-  const {isAuthenticated} = useAuth();
-  
-  
+  const { isAuthenticated, role } = useAuth();
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={isAuthenticated ? <Navigate to="/experience"/>:<Navigate to="/login"/>}/>
+        <Route
+          index
+          element={
+            isAuthenticated ? (
+              <Navigate to="/experience" />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        {isAuthenticated?<Route path="/" element={<UserLayout />} >
-          <Route path="experience" element={<Experience />} />
-          <Route path="skilss" element={<Skilss />} />
-          <Route path="education" element={<Education />} />
-          <Route path="portfolios" element={<Portfolios />} />
-          <Route path="messages" element={<Message />} />
-          <Route path="account" element={<Account />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>:null}
+        <Route
+          element={
+            isAuthenticated && role === "admin" ? (
+              <AdminLayout />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route path="/dashboard" element={<DashboardPage />} />
+        {isAuthenticated ? (
+          <Route path="/" element={<UserLayout />}>
+            <Route path="experience" element={<Experience />} />
+            <Route path="skilss" element={<Skilss />} />
+            <Route path="education" element={<Education />} />
+            <Route path="portfolios" element={<Portfolios />} />
+            <Route path="messages" element={<Message />} />
+            <Route path="account" element={<Account />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
+        ) : null}
         <Route path="/" element={<DefaultLayout />}>
           <Route path="about" element={<About />} />
           <Route path="resume" element={<Resume />} />
           <Route path="portfolio" element={<Portfolio />} />
           <Route path="contact" element={<Contact />} />
         </Route>
-        <Route path='*' element={<NotFound/>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

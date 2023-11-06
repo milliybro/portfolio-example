@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import hide from "../../../assets/hide.png";
+  import hide from "../../../assets/hide.png";
 import show from "../../../assets/show.png";
 import { useAuth } from "../../../states/auth";
 import { useNavigate } from "react-router-dom";

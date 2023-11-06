@@ -69,6 +69,7 @@ const UserHeader = () => {
   }, [unresponseMessages, unansweredMessages]);
   return (
     <header className="header">
+      <span className="piece-of"></span>
       <div className="admin__container">
         <div className="main__search">
           <input type="text" placeholder="Searching ...." />
@@ -89,11 +90,12 @@ const UserHeader = () => {
             className={openDropdown ? "user_dropdown open" : "user_dropdown"}
           >
             <ul>
-              <li>
+              {/* kerakli */}
+              {/* <li>
                 <Link to={"/about"}>
                     View Profile
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link to={"/account"}>
                   Account
