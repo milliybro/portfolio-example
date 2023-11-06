@@ -6,8 +6,6 @@ import {toast} from 'react-toastify'
 
 import EduCard, { EduCardProps } from "../../../components/educard/EduCard";
 import eduIcon from "../../../assets/education.svg";
-import adding from "../../../assets/teacher-explaining-using-gestures.png";
-import tick from "../../../assets/education-location.png";
 import ConfirmationModal from "../../../components/confirmation/ConfirmationModal";
 
 import "./education.scss";
