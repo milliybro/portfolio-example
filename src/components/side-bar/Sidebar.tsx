@@ -12,7 +12,7 @@ import icon5 from "../../assets/skils-icon.svg";
 import icon3 from "../../assets/education.svg";
 import icon2 from "../../assets/skilss.svg";
 import icon4 from "../../assets/messages.svg";
-// import icon7 from "../../assets/logout.svg";
+import icon7 from "../../assets/logout.svg";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -51,13 +51,13 @@ const Sidebar = () => {
   ];
 
   
-  // const handleLogout = () => {
-  //   try {
-  //     setIsModalOpen(true);
-  //   } catch (err) {
-  //     toast.error("Could not log out");
-  //   }
-  // };
+  const handleLogout = () => {
+    try {
+      setIsModalOpen(true);
+    } catch (err) {
+      toast.error("Could not log out");
+    }
+  };
   const handleConfirmLogout = () => {
     try {
       setIsModalOpen(false);
@@ -81,7 +81,7 @@ const Sidebar = () => {
             <img src={logo} alt="logo" />
           </div>
           <p className="user_id">
-            User
+            User: <span>{userData.firstName} {userData.lastName}</span>
           </p>
         </div>
         <ul className="sidebar_links">
@@ -96,7 +96,20 @@ const Sidebar = () => {
             </li>
           ))}
         </ul>
-        
+        <ul className="sidebar_links">
+          {/* <span className="devide_part">Preference</span> */}
+          {/* <li
+            className={location.pathname === "/settings" ? "active" : ""}
+            onClick={() => navigate("/settings")}
+          >
+            <img src={icon6} alt="" />
+            <Link to={"/setting"}>Settings</Link>
+          </li> */}
+          <li>
+            <img src={icon7} alt="" />
+            <div className="logOut" onClick={handleLogout}>Logout</div>
+          </li>
+        </ul>
       </div>
         <ConfirmationModal
           deleteTitle="Confirmation Deletation"
