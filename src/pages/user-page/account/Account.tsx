@@ -5,13 +5,13 @@ import { userObj } from "../../../data/userData";
 import { IMG_URL } from "../../../constants";
 
 import avatar from "../../../assets/avatar-svgrepo-com.svg";
-import check from "../../../assets/check-removebg-preview.png";
-import ProgressIndicator from "../../../components/progres/ProgresIndicator";
+// import check from "../../../assets/check-removebg-preview.png";
+// import ProgressIndicator from "../../../components/progres/ProgresIndicator";
 import PasswordUpdate from "./PasswordUpdate";
 
 import "./account.scss";
 const Account = () => {
-  const [showConfirmation, setShowConfirmation] = useState(false);
+  // const [showConfirmation, setShowConfirmation] = useState(false);
   const [img, setImg] = useState("");
   const [userData, setuserData] = useState({ ...userObj, fields: "" });
   
@@ -35,17 +35,17 @@ const Account = () => {
     lastName,
     username,
     fields,
-    info,
+    // info,
     phoneNumber,
     birthday,
     address,
     email,
-    github,
-    linkedin,
-    telegram,
-    facebook,
-    instagram,
-    youtube,
+    // github,
+    // linkedin,
+    // telegram,
+    // facebook,
+    // instagram,
+    // youtube,
   } = userData;
   
 
@@ -88,39 +88,38 @@ const Account = () => {
 
 
 
-  const handleConfirmationToggle = () => {
-    setShowConfirmation(!showConfirmation);
-  };
-  const totalFields = 16;
+  // const handleConfirmationToggle = () => {
+  //   setShowConfirmation(!showConfirmation);
+  // };
+  // const totalFields = 16;
   
-  const calculatePercentageFilled = () => {
-    const filledFieldCount = Object.values(userData).filter(value => value !== "").length;    
-    return filledFieldCount
-  };
-  const filledPercentage = calculatePercentageFilled();
+  // const calculatePercentageFilled = () => {
+  //   const filledFieldCount = Object.values(userData).filter(value => value !== "").length;    
+  //   return filledFieldCount
+  // };
+  // const filledPercentage = calculatePercentageFilled();
   
   return (
     <section id="account" className="account">
       <div className="account__wrapper">
         <div className="user_account_header">
-          <div className="header_banner"></div>
+          
           <div className="user_photo">
             <img src={img ? IMG_URL + img : avatar} alt="" />
           </div>
           <div className="user_info">
-            <h1>FirstName: {firstName}</h1>
-            <h2>LastName: {lastName}</h2>
-            <h4>Address: {address}</h4>
-            <p>
-              
-            </p>
+            <h1>{firstName}</h1>
+            <h2>{lastName}</h2>
+            <h4> {fields}</h4>
+
           </div>
         </div>
+        <div style={{display: "flex", gap: "15px"}}>
         <div className="user_form_wrapper">
           <div className="form__container">
             <h1 className="edu_form_title">
               <img src={img ? IMG_URL + img : avatar} alt="" />
-              Edit Your Information
+              Edit Information
             </h1>
             <form className="education__from" onSubmit={handleSubmit}>
               <div className="form__group">
@@ -157,7 +156,7 @@ const Account = () => {
                 />
               </div>
               <div className="form__group">
-                <label htmlFor="fields0">Fields</label>
+                <label htmlFor="fields0">Job</label>
                 <input
                   type="text"
                   name="fields"
@@ -165,50 +164,6 @@ const Account = () => {
                   value={fields}
                   onChange={onChange}
                   placeholder="Fields! Enter with comma separated"
-                />
-              </div>
-              <div className="form__group">
-                <label htmlFor="info">Info</label>
-                <input
-                  type="text"
-                  onChange={onChange}
-                  name="info"
-                  id="info"
-                  value={info}
-                  placeholder="Info"
-                />
-              </div>
-              <div className="form__group">
-                <label htmlFor="instagram">Instagram</label>
-                <input
-                  type="text"
-                  name="instagram"
-                  id="instagram"
-                  value={instagram}
-                  onChange={onChange}
-                  placeholder="Instagram"
-                />
-              </div>
-              <div className="form__group">
-                <label htmlFor="youtube">YouTube</label>
-                <input
-                  type="text"
-                  name="youtube"
-                  id="youtube"
-                  value={youtube}
-                  onChange={onChange}
-                  placeholder="YouTube"
-                />
-              </div>
-              <div className="form__group">
-                <label htmlFor="facebook">Facebook</label>
-                <input
-                  type="text"
-                  name="facebook"
-                  id="facebook"
-                  value={facebook}
-                  onChange={onChange}
-                  placeholder="Facebook"
                 />
               </div>
               <div className="form__group">
@@ -258,39 +213,7 @@ const Account = () => {
                   value={email}
                 />
               </div>
-              <div className="form__group">
-                <label htmlFor="github">GitHub</label>
-                <input
-                  type="text"
-                  name="github"
-                  id="github"
-                  onChange={onChange}
-                  placeholder="GitHub"
-                  value={github}
-                />
-              </div>
-              <div className="form__group">
-                <label htmlFor="linkedin">LinkedIn</label>
-                <input
-                  type="text"
-                  name="linkedin"
-                  id="linkedin"
-                  onChange={onChange}
-                  placeholder="LinkedIn"
-                  value={linkedin}
-                />
-              </div>
-              <div className="form__group">
-                <label htmlFor="telegram">Telegram</label>
-                <input
-                  type="text"
-                  name="telegram"
-                  id="telegram"
-                  onChange={onChange}
-                  placeholder="Telegram"
-                  value={telegram}
-                />
-              </div>
+            
               <div className="form__group">
                 <button className="submit_exp_btn add_edu" type="submit">
                   Submit
@@ -298,38 +221,11 @@ const Account = () => {
               </div>
             </form>
           </div>
-          <div className="left_side">
-            <div className="card">
-              <h3>Profile Completeness</h3>
-              <ProgressIndicator
-                filledFields={filledPercentage}
-                totalFields={totalFields}
-              />
-              <div className="card__content">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={showConfirmation}
-                    onChange={handleConfirmationToggle}
-                  />
-                  <span>Check to show filled information</span>
-                </label>
-                {showConfirmation ? (
-                  <div className="user_info">
-                    <h4>FirstName: </h4>
-                    <h4>LastsName: </h4>
-                  </div>
-                ) : (
-                  <div className="img_container">
-                    <img src={check} alt="" />
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+        </div>
+        <PasswordUpdate/>
+
         </div>
       </div>
-        <PasswordUpdate/>
       
     </section>
   );

@@ -9,7 +9,7 @@ const PasswordUpdate = () => {
     currentPassword: "",
     newPassword: "",
   };
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);  
   const [newPassword, setNewPassword] = useState(objPassword);
   const [passwordStrength, setPasswordStrength] = useState<
     "weak" | "medium" | "strong" | ""
@@ -37,9 +37,9 @@ const PasswordUpdate = () => {
     }
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  // const togglePasswordVisibility = () => {
+  //   setShowPassword(!showPassword);
+  // };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -87,13 +87,13 @@ const PasswordUpdate = () => {
             value={newPassword.newPassword}
             onChange={handlePasswordChange}
           />
-          <button
+          {/* <button
             type="button"
             className="show-password-button"
             onClick={togglePasswordVisibility}
           >
             {showPassword ? "Hide" : "Show"}
-          </button>
+          </button> */}
           <div className="password-strength">
             <div className={`strength-indicator ${passwordStrength}`}></div>
             <span className="strength-label">{passwordStrength}</span>

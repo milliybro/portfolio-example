@@ -173,10 +173,7 @@ const Message = () => {
 
   return (
     <div className="message">
-      <div className="messages__banner">
-        <h1>User's Messages</h1>
-        <div className="bg-overlay"></div>
-      </div>
+     
       <div className="message__wrapper">
         <div className="messages_row">
           <Tabs>
