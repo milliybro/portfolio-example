@@ -29,6 +29,7 @@ const Sidebar = () => {
     info: "",
     _id: "",
   });
+console.log(userData);
 
   const getData = async () => {
     try {
@@ -81,7 +82,7 @@ const Sidebar = () => {
             <img src={logo} alt="logo" />
           </div>
           <p className="user_id">
-            User: <span>{userData.firstName} {userData.lastName}</span>
+            User
           </p>
         </div>
         <ul className="sidebar_links">
