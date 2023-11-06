@@ -6,9 +6,6 @@ import { portfolioTypes } from "../../../types";
 import { useAuth } from "../../../states/auth";
 import { toast } from "react-toastify";
 
-import edit from "../../../assets/edit.png";
-import delete_icon from "../../../assets/delete.png";
-import portfolio from "../../../assets/skilss.svg";
 import ConfirmationModal from "../../../components/confirmation/ConfirmationModal";
 import DataLoading from "../../../components/dataLoading/Loading";
 
@@ -208,11 +205,77 @@ const Portfolios = () => {
   return (
     <section>
       <div className="portfolios">
+      <div className={`${loading ? "" : "portfolio_wrapper"}`}>
+        <h2 className="title">Projects</h2>
+        {loading ? (
+          <div
+            className="loading_containe"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "300px",
+            }}
+          >
+            <DataLoading />
+          </div>
+        ) : (
+          portfolioData.map((res) => (
+            <div key={res._id} className="card">
+              <div className="content">
+                <span className="title">{res.name}</span>
+                <span className="category">{res.description}</span>
+                <div className="portfolio_btns">
+                  <button onClick={() => editPortfolio(res._id)}>
+                    <h4>Edit</h4>
+                  </button>
+                  <button onClick={() => deletePortfolio(res._id)}>
+                  <h4>Delete</h4>
+
+                  </button>
+                </div>
+              </div>
+              <div className="image">
+                <Link to={res.url}>
+                  <img
+                    src={
+                      IMG_URL +
+                      res.photo._id +
+                      "." +
+                      res.photo.name.split(".")[1]
+                    }
+                    alt=""
+                  />
+                </Link>
+              </div>
+            </div>
+          ))
+        )}
+        <div className="pagination_container">
+          {portfolioData.length < 10 ? (
+            ""
+          ) : (
+            <div className="pagination">
+              <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+                Prev
+              </button>
+              <span>
+                Page {currentPage} of {totalPages}
+              </span>
+              <button
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
         <div className="education_main">
           <div className="form__container">
             <h1 className="edu_form_title">
-              <img src={portfolio} alt="" />
-              {selected ? "Edit" : "Add"} Your <span>Portfolio</span>
+              {selected ? "Edit" : "Add"} <span>Portfolio</span>
             </h1>
             <form className="education__from" onSubmit={handleSubmit}>
               <div className="form__group">
@@ -258,7 +321,7 @@ const Portfolios = () => {
                   {imagePreviewUrl ? (
                     <img src={imagePreviewUrl} alt="Preview" />
                   ) : (
-                    <p>Drag & Drop or Click to Upload</p>
+                    <p>Upload Image</p>
                   )}
                 </div>
                 <input
@@ -276,72 +339,7 @@ const Portfolios = () => {
             </form>
           </div>
         </div>
-      </div>
-      <div className={`${loading ? "" : "portfolio_wrapper"}`}>
-        <h2 className="title">My Projects</h2>
-        {loading ? (
-          <div
-            className="loading_containe"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "300px",
-            }}
-          >
-            <DataLoading />
-          </div>
-        ) : (
-          portfolioData.map((res) => (
-            <div key={res._id} className="card">
-              <div className="content">
-                <span className="title">{res.name}</span>
-                <span className="category">{res.description}</span>
-                <div className="portfolio_btns">
-                  <button onClick={() => editPortfolio(res._id)}>
-                    <img src={edit} alt="icon" />
-                  </button>
-                  <button onClick={() => deletePortfolio(res._id)}>
-                    <img src={delete_icon} alt="icon" />
-                  </button>
-                </div>
-              </div>
-              <div className="image">
-                <Link to={res.url}>
-                  <img
-                    src={
-                      IMG_URL +
-                      res.photo._id +
-                      "." +
-                      res.photo.name.split(".")[1]
-                    }
-                    alt=""
-                  />
-                </Link>
-              </div>
-            </div>
-          ))
-        )}
-        <div className="pagination_container">
-          {portfolioData.length === 0 ? (
-            ""
-          ) : (
-            <div className="pagination">
-              <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-                Prev
-              </button>
-              <span>
-                Page {currentPage} of {totalPages}
-              </span>
-              <button
-                onClick={handleNextPage}
-                disabled={currentPage === totalPages}
-              >
-                Next
-              </button>
-            </div>
-          )}
-        </div>
+     
       </div>
       <ConfirmationModal
         deleteTitle="Confirmation Deletation"

@@ -1,4 +1,5 @@
 import "./educard.scss";
+import education from "../../assets/education.png";
 
 export interface EduCardProps {
   _id: string;
@@ -26,24 +27,34 @@ const EduCard = ({
       <div className="main">
         <div className="card">
           <div className="card-title">
-            <div style={{display: "flex", gap: "50px"}}>
-            <h4>Education Name: <span>{name}</span></h4>
-            <h3>Education Level: <span>{level}</span></h3>
+            <div>
+              <img src={education} alt="" />
             </div>
-              <p>Description: <span>{description}</span></p>
-              <div style={{display: "flex", gap: "50px"}}>
-              <h3>Start Date: {startDate}</h3>
-            <h3>End Date: {endDate}</h3>
-              <div className="card-content-user-contact">
-                <button onClick={onEdit}>
-                  <h4>Edit</h4>
-                </button>
-                <button onClick={onDlete}>
-                <h4>Delete</h4>
-                </button>
+            <div>
+              <div style={{ display: "flex", gap: "50px" }}>
+                <h4>
+                  Education Name: <span>{name}</span>
+                </h4>
+                <h3>
+                  Education Level: <span>{level}</span>
+                </h3>
               </div>
-            </div>
-            <div className="card-content-user-info">
+              <p>
+                Description: <span>{description}</span>
+              </p>
+              <div style={{ display: "flex", gap: "50px" }}>
+                <h3>Start Date: {startDate}</h3>
+                <h3>End Date: {endDate}</h3>
+                <div className="card-content-user-contact">
+                  <button onClick={onEdit}>
+                    <h4>Edit</h4>
+                  </button>
+                  <button onClick={onDlete}>
+                    <h4>Delete</h4>
+                  </button>
+                </div>
+              </div>
+              <div className="card-content-user-info"></div>
             </div>
           </div>
         </div>
