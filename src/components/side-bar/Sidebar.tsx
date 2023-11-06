@@ -12,7 +12,7 @@ import icon5 from "../../assets/skils-icon.svg";
 import icon3 from "../../assets/education.svg";
 import icon2 from "../../assets/skilss.svg";
 import icon4 from "../../assets/messages.svg";
-import icon7 from "../../assets/logout.svg";
+// import icon7 from "../../assets/logout.svg";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -51,13 +51,13 @@ const Sidebar = () => {
   ];
 
   
-  const handleLogout = () => {
-    try {
-      setIsModalOpen(true);
-    } catch (err) {
-      toast.error("Could not log out");
-    }
-  };
+  // const handleLogout = () => {
+  //   try {
+  //     setIsModalOpen(true);
+  //   } catch (err) {
+  //     toast.error("Could not log out");
+  //   }
+  // };
   const handleConfirmLogout = () => {
     try {
       setIsModalOpen(false);
