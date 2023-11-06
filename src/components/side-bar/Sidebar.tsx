@@ -6,13 +6,12 @@ import ConfirmationModal from "../confirmation/ConfirmationModal";
 import { useAuth } from "../../states/auth";
 import { toast } from "react-toastify";
 
-import logo from "../../../public/logo.jpg";
+import logo from "../../assets/logo.jpg";
 import icon1 from "../../assets/experience.svg";
 import icon5 from "../../assets/skils-icon.svg";
 import icon3 from "../../assets/education.svg";
 import icon2 from "../../assets/skilss.svg";
 import icon4 from "../../assets/messages.svg";
-import icon6 from "../../assets/settings.svg";
 import icon7 from "../../assets/logout.svg";
 
 const Sidebar = () => {

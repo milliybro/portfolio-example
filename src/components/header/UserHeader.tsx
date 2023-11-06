@@ -6,7 +6,7 @@ import { request } from "../../request";
 import { IMG_URL } from "../../constants";
 
 
-import bell from "../../../public/bell.png";
+import bell from "../../assets/bell.png";
 import avatar from "../../assets/avatar-svgrepo-com.svg";
 import search from "../../assets/search-icon.png";
 
