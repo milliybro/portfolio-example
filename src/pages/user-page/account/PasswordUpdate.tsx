@@ -14,6 +14,7 @@ const PasswordUpdate = () => {
   const [passwordStrength, setPasswordStrength] = useState<
     "weak" | "medium" | "strong" | ""
   >("");
+  console.log(setShowPassword);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
