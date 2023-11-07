@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../../../states/auth";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import hide from "../../../assets/hide.png";
 import show from "../../../assets/show.png";
@@ -21,7 +22,7 @@ const Login = () => {
       await auth.login(userForm, navigate); 
       setLoading(false)
     } catch (err) {
-      console.log(err);
+      toast.error("Login or password reset failed");
     }
   };
 

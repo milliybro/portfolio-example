@@ -45,8 +45,11 @@ function App() {
               <Navigate to="/login" />
             )
           }
-        />
+        >
+          {" "}
         <Route path="/dashboard" element={<DashboardPage />} />
+        </Route>
+
         {isAuthenticated ? (
           <Route path="/" element={<UserLayout />}>
             <Route path="experience" element={<Experience />} />
