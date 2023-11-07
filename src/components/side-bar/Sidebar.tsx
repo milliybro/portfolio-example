@@ -106,10 +106,10 @@ console.log(userData);
             <img src={icon6} alt="" />
             <Link to={"/setting"}>Settings</Link>
           </li> */}
-          <li>
+          {/* <li>
             <img src={icon7} alt="" />
             <div className="logOut" onClick={handleLogout}>Logout</div>
-          </li>
+          </li> */}
         </ul>
       </div>
         <ConfirmationModal
