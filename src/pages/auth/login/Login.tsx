@@ -13,6 +13,7 @@ const Login = () => {
   const [userForm, setUserForm] = useState({ username: "", password: "" });
   const [loading, setLoading] = useState(false);
   const auth = useAuth(); 
+console.log(setShowPassword);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,9 +27,9 @@ const Login = () => {
     }
   };
 
-  const handlePasswordToggle = () => {
-    setShowPassword(!showPassword);
-  };
+  // const handlePasswordToggle = () => {
+  //   setShowPassword(!showPassword);
+  // };
 
   const handeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -76,7 +77,7 @@ const Login = () => {
                     <button
                       type="button"
                       className="password-toggle-button"
-                      onClick={handlePasswordToggle}
+                      // onClick={handlePasswordToggle}
                     >
                       {showPassword ? (
                         <img src={hide} alt="" />
