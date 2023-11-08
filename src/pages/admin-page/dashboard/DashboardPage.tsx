@@ -1,7 +1,24 @@
+import { Spin } from "antd";
+
+import "./style.scss";
+import { useAuth } from "../../../states/auth";
+
+
 const DashboardPage = () => {
-  return <div>DashboardPage
-   <h3>Layout Qani?</h3>
-  </div>;
+  const {role} = useAuth();
+  return (
+    <Spin spinning={false}>
+      <section>
+        <div className="container">
+          <div className="main-stats">
+            <h2 className="dashboard-title">Hello {role}!</h2>
+          </div>
+          <div className="stats-row">
+          </div>
+        </div>
+      </section>
+    </Spin>
+  );
 };
 
 export default DashboardPage;

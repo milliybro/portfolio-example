@@ -18,6 +18,8 @@ import NotFound from "./pages/user-page/NotFound";
 import { useAuth } from "./states/auth";
 import AdminLayout from "./layouts/AdminLayout/AdminLayout";
 import DashboardPage from "./pages/admin-page/dashboard/DashboardPage";
+import EducationPage from "./pages/admin-page/education/EducationPage";
+import AdminSkillsPage from "./pages/skills/AdminSkills";
 
 function App() {
   const { isAuthenticated, role } = useAuth();
@@ -48,6 +50,9 @@ function App() {
         >
           {" "}
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/adminEducation" element={<EducationPage />} />
+        <Route path="/adminSkills" element={<AdminSkillsPage />} />
+
         </Route>
 
         {isAuthenticated ? (
