@@ -49,7 +49,7 @@ const UserHeader = () => {
   const { logout } = useAuth();
   const handleLogout = () => {
     if (confirm("Are you sure you want to log")) {
-      logout();
+      logout(navigate);
       navigate('/login')
     }
   };

@@ -62,7 +62,7 @@ console.log(userData);
   const handleConfirmLogout = () => {
     try {
       setIsModalOpen(false);
-      logout();
+      logout(navigate);
       navigate("/login"); 
     } catch (err) {
       toast.error("Could not log out");
