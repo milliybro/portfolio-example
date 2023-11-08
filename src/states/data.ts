@@ -91,7 +91,7 @@ function getData<T>(url : string){
           set((state)=>({...state , isModalOpen : false}))
         }
       } catch (err) {
-        message.error("Malumot jonatishda hatolik !")
+        message.error("No information added!")
       }
     },
     editData : async (id , form)=>{

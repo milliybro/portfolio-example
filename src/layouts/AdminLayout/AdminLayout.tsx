@@ -54,18 +54,16 @@ const AdminLayout = () => {
               icon: <UserOutlined />,
               label: <Link to="/dashboard">Dashboard</Link>,
             },
-            role === "admin"
-              ? {
-                  key: "/users",
-                  icon: <TeamOutlined />,
-                  label: (
-                    <Link to="/adminUsers">
-                      Users{" "}
-                      {role !== "admin" ? <LockOutlined color="red" /> : null}
-                    </Link>
-                  ),
-                }
-              : null,
+            {
+              key: "/users",
+              icon: <TeamOutlined />,
+              label: (
+                <Link to="/adminUsers">
+                  Users {role !== "admin" ? <LockOutlined color="red" /> : null}
+                </Link>
+              ),
+            },
+
             {
               key: "/portfolios",
               icon: <DatabaseOutlined />,
@@ -112,7 +110,7 @@ const AdminLayout = () => {
             {
               key: "4",
               icon: <LogoutOutlined />,
-              
+
               label: (
                 <Button
                   onClick={() =>

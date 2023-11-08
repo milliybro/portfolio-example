@@ -20,6 +20,7 @@ import AdminLayout from "./layouts/AdminLayout/AdminLayout";
 import DashboardPage from "./pages/admin-page/dashboard/DashboardPage";
 import EducationPage from "./pages/admin-page/education/EducationPage";
 import AdminSkillsPage from "./pages/skills/AdminSkills";
+import UsersPageAdmin from "./pages/admin-page/users/AdminUsers";
 
 function App() {
   const { isAuthenticated, role } = useAuth();
@@ -50,6 +51,7 @@ function App() {
         >
           {" "}
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/adminUsers" element={<UsersPageAdmin />} />
         <Route path="/adminEducation" element={<EducationPage />} />
         <Route path="/adminSkills" element={<AdminSkillsPage />} />
 
