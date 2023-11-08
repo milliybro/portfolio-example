@@ -10,7 +10,6 @@ import {
   ReadOutlined,
   TeamOutlined,
   UserOutlined,
-  WhatsAppOutlined,
 } from "@ant-design/icons";
 
 import { Layout, Menu, Button, Modal, Badge, Flex } from "antd";
