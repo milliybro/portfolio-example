@@ -1,6 +1,18 @@
-import { PortfolioType } from "../types";
-import crud from "./crud";
+import { userInteface } from "../types";
+import getData from "./data";
 
-const useEducation = crud<PortfolioType>("education");
+interface education {
+  _id: string;
+  name: string;
+  level: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  user: null | userInteface;
+  __v: number;
 
-export default useEducation;
+}
+
+const useEducation = getData<education>("education")
+
+export default useEducation

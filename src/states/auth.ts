@@ -10,10 +10,11 @@ import { request } from "../request";
 type AuthTypes = {
   isAuthenticated: boolean;
   login: (data: userLogin, navigate: NavigateFunction) => void;
-  logout: () => void;
+  logout: (navigate: NavigateFunction) => void;
   register: (data: userRegister, navigate: NavigateFunction) => void;
   userId: string;
   role: string | null;
+  
 };
 
 export const useAuth = create<AuthTypes>((set, get) => ({
@@ -37,9 +38,10 @@ export const useAuth = create<AuthTypes>((set, get) => ({
       console.log(err)
     }
   },
-  logout: () => {
+  logout: (navigate) => {
     Cookies.remove(TOKEN);
     set({ isAuthenticated: false });
+    navigate("/");
   },
   register: async (data, navigate) => {
     try {

@@ -1,247 +1,262 @@
+import { Fragment, useEffect } from "react";
 import {
-   Button,
-   Flex,
-   Form,
-   Input,
-   Modal,
-   Pagination,
-   Space,
-   Table,
- } from "antd";
- import { Fragment, useEffect } from "react";
- import { useNavigate } from "react-router-dom";
- 
- import "./style.scss";
+  Form,
+  Button,
+  Flex,
+  Input,
+  Modal,
+  Space,
+  Table,
+  Pagination,
+} from "antd";
+import { useForm } from "antd/es/form/Form";
+
+import "./style.scss";
+import useEducation from "../../../states/adminEducation";
 import { LIMIT } from "../../../constants";
-import { longDate } from "../../../utils/DataConvert";
-import useEducationStore from "../../../states/adminEducation";
- 
- const EducationPage = () => {
-   const navigate = useNavigate();
-   const [form] = Form.useForm();
- 
-   const {
-     loading,
-     isModalLoading,
-     selected,
-     isModalOpen,
-     search,
-     total,
-     page,
-     data: education,
-     showModal,
-     closeModal,
-     handleSearch,
-     handlePage,
-     handleOk,
-     editData: editEducation,
-     deleteData: deleteEducation,
-     getData: getEducation,
-   } = useEducationStore();
- 
-   useEffect(() => {
-     getEducation();
-   }, [getEducation]);
- 
-   const columns = [
-     {
-       title: "Education",
-       dataIndex: "name",
-       key: "name",
-     },
-     {
-       title: "Level",
-       dataIndex: "level",
-       key: "level",
-     },
-     {
-       title: "Description",
-       dataIndex: "description",
-       key: "description",
-       render: (data: string) => (
-         <p
-           style={{
-             marginBottom: "0px",
-           }}
-         >
-           {data.slice(0, 40)}
-         </p>
-       ),
-     },
-     {
-       title: "Started",
-       dataIndex: "startDate",
-       key: "startDate",
-       render: (data: string) => <p>{longDate(data.split("T")[0])}</p>,
-     },
-     {
-       title: "Finished",
-       dataIndex: "endDate",
-       key: "endDate",
-       render: (data: string) => <p>{longDate(data.split("T")[0])}</p>,
-     },
-     {
-       title: "Action",
-       dataIndex: "_id",
-       key: "_id",
-       render: (id: string) => (
-         <Space size="middle">
-           <Button type="primary" onClick={() => editEducation(form, id)}>
-             Edit
-           </Button>
-           <Button
-             type="primary"
-             danger
-             onClick={() =>
-               Modal.confirm({
-                 title: "Do you want to delete this education info ?",
-                 onOk: () => deleteEducation(id),
-               })
-             }
-           >
-             Delete
-           </Button>
-         </Space>
-       ),
-     },
-   ];
- 
-   return (
-     <Fragment>
-       <Table
-         className="skills-table"
-         scroll={{
-           x: 1000,
-         }}
-         pagination={false}
-         loading={loading}
-         dataSource={education?.data}
-         columns={columns}
-         bordered={true}
-         title={() => (
-           <Fragment>
-             <Flex
-               className="table-title2"
-               align="center"
-               justify="space-between"
-               gap={36}
-             >
-               <h1 className="skills-title">Education</h1>
-               <Input
-                 className="search-input"
-                 value={search}
-                 onChange={(e) => handleSearch(e, navigate)}
-                 style={{ width: "auto", flexGrow: 1 }}
-                 placeholder="Searching..."
-               />
-               <Button onClick={() => showModal(form)} type="dashed">
-                 Add education
-               </Button>
-             </Flex>
-             <div>
-               <p className="search-result-text">
-                 About <span>{total}</span> results match
-               </p>
-             </div>
-           </Fragment>
-         )}
-       />
-       {total > LIMIT ? (
-         <Pagination
-           className="pagination"
-           total={total}
-           pageSize={LIMIT}
-           current={page}
-           onChange={(page) => handlePage(page, navigate)}
-         />
-       ) : null}
-       <Modal
-         title="Education info"
-         maskClosable={false}
-         confirmLoading={isModalLoading}
-         okText={selected === null ? "Add education" : "Save education"}
-         open={isModalOpen}
-         onOk={() => handleOk(form)}
-         onCancel={closeModal}
-       >
-         <Form
-           name="portfolio"
-           autoComplete="off"
-           labelCol={{
-             span: 24,
-           }}
-           wrapperCol={{
-             span: 24,
-           }}
-           form={form}
-         >
-           <Form.Item
-             label="Education"
-             name="name"
-             rules={[
-               {
-                 required: true,
-                 message: "Please enter a brief description of education !",
-               },
-             ]}
-           >
-             <Input />
-           </Form.Item>
- 
-           <Form.Item
-             label="Level"
-             name="level"
-             rules={[
-               {
-                 required: true,
-                 message: "Please enter your level !",
-               },
-             ]}
-           >
-             <Input />
-           </Form.Item>
- 
-           <Form.Item
-             label="Description"
-             name="description"
-             rules={[
-               {
-                 required: true,
-                 message: "Please enter a brief description !",
-               },
-             ]}
-           >
-             <Input.TextArea showCount maxLength={100} />
-           </Form.Item>
- 
-           <Flex align="center" justify="space-between">
-             <Form.Item
-               label="Started"
-               name="startDate"
-               rules={[
-                 {
-                   required: true,
-                 },
-               ]}
-             >
-               <input className="date-picker" type="date" />
-             </Form.Item>
-             <Form.Item
-               label="Finished"
-               name="endDate"
-               rules={[
-                 {
-                   required: true,
-                 },
-               ]}
-             >
-               <input className="date-picker" type="date" />
-             </Form.Item>
-           </Flex>
-         </Form>
-       </Modal>
-     </Fragment>
-   );
- };
- 
- export default EducationPage;
+import { useNavigate } from "react-router-dom";
+const EducationPageAdmin = () => {
+  const {
+    total,
+    loading,
+    isModalOpen,
+   //  active,
+   //  totalPaginate,
+    data,
+    page,
+    getData,
+    editData,
+    deleteData,
+    SerachSkills,
+   //  setActive,
+    showModal,
+    handleCancel,
+    handleOk,
+    handlePage,
+  } = useEducation();
+
+  const [form] = useForm();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
+
+  const columns = [
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Level",
+      dataIndex: "level",
+      key: "level",
+    },
+    {
+      title: "Description",
+      dataIndex: "description",
+      key: "description",
+    },
+    {
+      title: "Action",
+      dataIndex: "_id",
+      key: "_id",
+      render: (data: string) => {
+        return (
+          <Space size="middle">
+            <Button onClick={() => editData(data, form)} type="primary">
+              Edit
+            </Button>
+            <Button
+              onClick={() => deleteData(data)}
+              type="primary"
+              style={{
+                backgroundColor: "red",
+              }}
+            >
+              Delete
+            </Button>
+          </Space>
+        );
+      },
+    },
+  ];
+
+  return (
+    <Fragment>
+      <section id="search">
+        <div className="container">
+          <div className="search-container"></div>
+        </div>
+      </section>
+      <Table
+        loading={loading}
+        className="table"
+        title={() => (
+          <Flex justify="space-between" align="center" gap="20px">
+            <h1>Education({total})</h1>
+            <input
+              onChange={(e) => SerachSkills(e)}
+              type="text"
+              className="search-input"
+              placeholder="Search..."
+            />
+            <button className="modal-open" onClick={() => showModal(form)}>
+              Add education
+            </button>
+          </Flex>
+        )}
+        pagination={false}
+        dataSource={data}
+        columns={columns}
+      />
+      {total > LIMIT ? (
+        <Pagination
+          className="pagination"
+          total={total}
+          pageSize={LIMIT}
+          current={page}
+          onChange={(page) => handlePage(page, navigate)}
+        />
+      ) : null}
+      {/* {totalPaginate > 1 ? (
+        <section id="pagination">
+          <div className="container">
+            <div className="pagination-btns">
+              <button
+                disabled={active === 1 ? true : false}
+                onClick={() => {
+                  setActive(active - 1);
+                }}
+              >
+                {"<"}
+              </button>
+              <span>{active}</span>
+              <button
+                disabled={totalPaginate === active ? true : false}
+                onClick={() => {
+                  setActive(active + 1);
+                }}
+              >
+                {">"}
+              </button>
+            </div>
+          </div>
+        </section>
+      ) : null} */}
+      <Modal
+        open={isModalOpen}
+        title="Title"
+        onCancel={handleCancel}
+        footer={(_, { CancelBtn }) => (
+          <>
+            <CancelBtn />
+          </>
+        )}
+      >
+        <Form
+          name="basic"
+          labelCol={{
+            span: 24,
+          }}
+          wrapperCol={{
+            span: 24,
+          }}
+          style={{
+            maxWidth: 600,
+          }}
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={() => handleOk(form)}
+          autoComplete="off"
+          form={form}
+        >
+          <Form.Item
+            label="Name"
+            name="name"
+            rules={[
+              {
+                required: true,
+                message: "Please input skill name!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Level"
+            name="level"
+            rules={[
+              {
+                required: true,
+                message: "Please input category description!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Description"
+            name="description"
+            rules={[
+              {
+                required: true,
+                message: "Please input category description!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Start date"
+            name="startDate"
+            rules={[
+              {
+                required: true,
+                message: "Please input category description!",
+              },
+            ]}
+          >
+            <input className="form-date" type="date" name="startDate" />
+          </Form.Item>
+
+          <Form.Item
+            label="End date"
+            name="endDate"
+            rules={[
+              {
+                required: true,
+                message: "Please input category description!",
+              },
+            ]}
+          >
+            <input className="form-date" type="date" name="endDate" />
+          </Form.Item>
+
+          <Form.Item
+            wrapperCol={{
+              span: 24,
+            }}
+          >
+            <Button
+              style={{
+                width: "100%",
+              }}
+              type="primary"
+              htmlType="submit"
+            >
+              Add
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
+    </Fragment>
+  );
+};
+
+export default EducationPageAdmin;

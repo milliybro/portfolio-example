@@ -1,51 +1,51 @@
+import { Fragment, useEffect } from "react";
 import {
+  Form,
   Button,
   Flex,
-  Form,
   Input,
   Modal,
-  Pagination,
-  Progress,
   Space,
   Table,
+  Pagination,
 } from "antd";
-import { Fragment, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useForm } from "antd/es/form/Form";
 
 import "./style.scss";
+
+import { useNavigate } from "react-router-dom";
 import { LIMIT } from "../../constants";
-import useSkillsStore from "../../states/adminSkills";
-
-const AdminSkillsPage = () => {
-  const navigate = useNavigate();
-  const [form] = Form.useForm();
-
+import useSkills from "../../states/adminSkills";
+const EducationPageAdmin = () => {
   const {
-    loading,
-    isModalLoading,
-    selected,
-    isModalOpen,
-    search,
     total,
+    loading,
+    isModalOpen,
+   //  active,
+   //  totalPaginate,
+    data,
     page,
-    data: skills,
+    getData,
+    editData,
+    deleteData,
+    SerachSkills,
+   //  setActive,
     showModal,
-    closeModal,
-    handleSearch,
-    handlePage,
+    handleCancel,
     handleOk,
-    editData: editEducation,
-    deleteData: deleteEducation,
-    getData: getEducation,
-  } = useSkillsStore();
+    handlePage,
+  } = useSkills();
+
+  const [form] = useForm();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getEducation();
-  }, [getEducation]);
+    getData();
+  }, [getData]);
 
   const columns = [
     {
-      title: "Skills Name",
+      title: "Name",
       dataIndex: "name",
       key: "name",
     },
@@ -53,68 +53,59 @@ const AdminSkillsPage = () => {
       title: "Percent",
       dataIndex: "percent",
       key: "percent",
-      render: (skills) => <Progress percent={skills} status="active" />,
     },
     {
       title: "Action",
       dataIndex: "_id",
       key: "_id",
-      render: (id: string) => (
-        <Space size="middle">
-          <Button type="primary" onClick={() => editEducation(form, id)}>
-            Edit
-          </Button>
-          <Button
-            type="primary"
-            danger
-            onClick={() =>
-              Modal.confirm({
-                title: "Do you want to delete this skills info ?",
-                onOk: () => deleteEducation(id),
-              })
-            }
-          >
-            Delete
-          </Button>
-        </Space>
-      ),
+      render: (data: string) => {
+        return (
+          <Space size="middle">
+            <Button onClick={() => editData(data, form)} type="primary">
+              Edit
+            </Button>
+            <Button
+              onClick={() => deleteData(data)}
+              type="primary"
+              style={{
+                backgroundColor: "red",
+              }}
+            >
+              Delete
+            </Button>
+          </Space>
+        );
+      },
     },
   ];
 
   return (
     <Fragment>
+      <section id="search">
+        <div className="container">
+          <div className="search-container"></div>
+        </div>
+      </section>
       <Table
-        className="skills-table"
-        scroll={{
-          x: 1000,
-        }}
-        pagination={false}
         loading={loading}
-        dataSource={skills?.data}
-        columns={columns}
-        bordered={true}
+        className="table"
         title={() => (
-          <Fragment>
-            <Flex
-              className="table-title2"
-              align="center"
-              justify="space-between"
-              gap={36}
-            >
-              <h1 className="skills-title">Skills({total})</h1>
-              <Input
-                className="search-input"
-                value={search}
-                onChange={(e) => handleSearch(e, navigate)}
-                style={{ width: "auto", flexGrow: 1 }}
-                placeholder="Searching..."
-              />
-              <Button onClick={() => showModal(form)} type="dashed">
-                Add skills
-              </Button>
-            </Flex>
-          </Fragment>
+          <Flex justify="space-between" align="center" gap="20px">
+            <h1>Education({total})</h1>
+            <input
+              onChange={(e) => SerachSkills(e)}
+              type="text"
+              className="search-input"
+              placeholder="Search..."
+            />
+            <button className="modal-open" onClick={() => showModal(form)}>
+              Add education
+            </button>
+          </Flex>
         )}
+        pagination={false}
+        dataSource={data}
+        columns={columns}
       />
       {total > LIMIT ? (
         <Pagination
@@ -125,33 +116,66 @@ const AdminSkillsPage = () => {
           onChange={(page) => handlePage(page, navigate)}
         />
       ) : null}
+      {/* {totalPaginate > 1 ? (
+        <section id="pagination">
+          <div className="container">
+            <div className="pagination-btns">
+              <button
+                disabled={active === 1 ? true : false}
+                onClick={() => {
+                  setActive(active - 1);
+                }}
+              >
+                {"<"}
+              </button>
+              <span>{active}</span>
+              <button
+                disabled={totalPaginate === active ? true : false}
+                onClick={() => {
+                  setActive(active + 1);
+                }}
+              >
+                {">"}
+              </button>
+            </div>
+          </div>
+        </section>
+      ) : null} */}
       <Modal
-        title="Education info"
-        maskClosable={false}
-        confirmLoading={isModalLoading}
-        okText={selected === null ? "Add skills" : "Save skills"}
         open={isModalOpen}
-        onOk={() => handleOk(form)}
-        onCancel={closeModal}
+        title="Title"
+        onCancel={handleCancel}
+        footer={(_, { CancelBtn }) => (
+          <>
+            <CancelBtn />
+          </>
+        )}
       >
         <Form
-          name="portfolio"
-          autoComplete="off"
+          name="basic"
           labelCol={{
             span: 24,
           }}
           wrapperCol={{
             span: 24,
           }}
+          style={{
+            maxWidth: 600,
+          }}
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={() => handleOk(form)}
+          autoComplete="off"
           form={form}
         >
           <Form.Item
-            label="Skill"
+            label="Name"
             name="name"
             rules={[
               {
                 required: true,
-                message: "Please fill!",
+                message: "Please input skill name!",
               },
             ]}
           >
@@ -164,11 +188,27 @@ const AdminSkillsPage = () => {
             rules={[
               {
                 required: true,
-                message: "Please enter your level !",
+                message: "Please input category description!",
               },
             ]}
           >
             <Input />
+          </Form.Item>
+
+          <Form.Item
+            wrapperCol={{
+              span: 24,
+            }}
+          >
+            <Button
+              style={{
+                width: "100%",
+              }}
+              type="primary"
+              htmlType="submit"
+            >
+              Add
+            </Button>
           </Form.Item>
         </Form>
       </Modal>
@@ -176,4 +216,4 @@ const AdminSkillsPage = () => {
   );
 };
 
-export default AdminSkillsPage;
+export default EducationPageAdmin;
