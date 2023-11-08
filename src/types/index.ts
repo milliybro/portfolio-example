@@ -102,6 +102,7 @@ export interface PhotoType {
 }
 
 export interface userInteface {
+  url: string;
   role: string;
   fields: string[];
   client: boolean;

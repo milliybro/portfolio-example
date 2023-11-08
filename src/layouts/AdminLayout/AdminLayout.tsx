@@ -86,7 +86,7 @@ const AdminLayout = () => {
               key: "/experience",
               icon: <ClockCircleOutlined />,
               label: (
-                <Link to={role === "user" ? "/dashboard" : "/adminExperience"}>
+                <Link to={role === "user" ? "/dashboard" : "/adminExperiences"}>
                   Experience {role === "user" ? <LockOutlined /> : ""}
                 </Link>
               ),
@@ -100,13 +100,7 @@ const AdminLayout = () => {
                 </Link>
               ),
             },
-            role === "admin"
-              ? {
-                  key: "/messages",
-                  icon: <WhatsAppOutlined />,
-                  label: <Link to="/adminMessages">Messages</Link>,
-                }
-              : null,
+            
             {
               key: "4",
               icon: <LogoutOutlined />,

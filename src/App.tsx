@@ -21,6 +21,8 @@ import DashboardPage from "./pages/admin-page/dashboard/DashboardPage";
 import EducationPage from "./pages/admin-page/education/EducationPage";
 import AdminSkillsPage from "./pages/skills/AdminSkills";
 import UsersPageAdmin from "./pages/admin-page/users/AdminUsers";
+import PortfoliosPageAdmin from "./pages/admin-page/portfolios/AdminPortfolios";
+import ExperiencePageAdmin from "./pages/admin-page/experience/AdminExperiencePage";
 
 function App() {
   const { isAuthenticated, role } = useAuth();
@@ -53,6 +55,8 @@ function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/adminUsers" element={<UsersPageAdmin />} />
         <Route path="/adminEducation" element={<EducationPage />} />
+        <Route path="/adminPortfolios" element={<PortfoliosPageAdmin />} />
+        <Route path="/adminexperiences" element={<ExperiencePageAdmin />} />
         <Route path="/adminSkills" element={<AdminSkillsPage />} />
 
         </Route>
