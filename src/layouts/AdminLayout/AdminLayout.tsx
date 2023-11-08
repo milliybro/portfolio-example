@@ -5,7 +5,6 @@ import {
   ClockCircleOutlined,
   DatabaseOutlined,
   LockOutlined,
-  LogoutOutlined,
   MenuFoldOutlined,
   ReadOutlined,
   TeamOutlined,
@@ -102,7 +101,6 @@ const AdminLayout = () => {
             
             {
               key: "4",
-              icon: <LogoutOutlined />,
 
               label: (
                 <Button

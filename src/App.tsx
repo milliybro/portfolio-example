@@ -23,6 +23,7 @@ import AdminSkillsPage from "./pages/skills/AdminSkills";
 import UsersPageAdmin from "./pages/admin-page/users/AdminUsers";
 import PortfoliosPageAdmin from "./pages/admin-page/portfolios/AdminPortfolios";
 import ExperiencePageAdmin from "./pages/admin-page/experience/AdminExperiencePage";
+import HomePage from "./pages/user-page/home/HomePage";
 
 function App() {
   const { isAuthenticated, role } = useAuth();
@@ -63,6 +64,7 @@ function App() {
 
         {isAuthenticated ? (
           <Route path="/" element={<UserLayout />}>
+            <Route path="home" element={<HomePage />} />
             <Route path="experience" element={<Experience />} />
             <Route path="skilss" element={<Skilss />} />
             <Route path="education" element={<Education />} />

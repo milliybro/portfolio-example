@@ -1,6 +1,6 @@
 import "./Sidebar.scss";
 import { useEffect, useState, Fragment } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { request } from "../../request";
 import ConfirmationModal from "../confirmation/ConfirmationModal";
 import { useAuth } from "../../states/auth";
@@ -79,7 +79,9 @@ console.log(userData);
       <div className="sidebar">
         <div className="sidebar__logo">
           <div className="logo_wrapper">
+            <NavLink  to={"/home"}>
             <img src={logo} alt="logo" />
+            </NavLink>
           </div>
           <p className="user_id">
             User

@@ -7,6 +7,7 @@ import tg from "../../assets/default-page-icons/icons8-telegram-48.png";
 import insta from "../../assets/default-page-icons/icons8-instagram-24.png";
 import github from "../../assets/default-page-icons/icons8-github-30.png";
 import youtube from "../../assets/default-page-icons/icons8-youtube-30.png";
+import "./Header.scss"
 
 const DefaultHeader = () => {
   const [top, setTop] = useState(false);
@@ -55,7 +56,7 @@ const DefaultHeader = () => {
             <h2>
               I'm a passionate
               <span>{userData.fields[0]}</span>
-              from New York
+              from {userData.address}
             </h2>
             <nav id="navbar" className="navbar">
               {top ? (

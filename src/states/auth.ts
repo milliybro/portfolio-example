@@ -30,9 +30,9 @@ export const useAuth = create<AuthTypes>((set, get) => ({
       if (get().role === "admin") {
         navigate("/dashboard");
       } else if (get().role === "client") {
-        navigate("/experience");
+        navigate("/home");
       } else {
-        navigate("/");
+        navigate("/home");
       }
     } catch (err) {
       console.log(err)
